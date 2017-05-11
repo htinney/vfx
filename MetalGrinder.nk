@@ -1,0 +1,136 @@
+#! /usr/local/Nuke10.0v5/libnuke-10.0.5.so -nx
+#write_info Write1 file:"/users/guest/h/htinney/VFX/render/MetalGrinderExport.mov" format:"1280 720 1" chans:":rgba.red:rgba.green:rgba.blue:" framerange:"1 97" fps:"0" colorspace:"default (Gamma1.8)" datatype:"unknown" transfer:"unknown" views:"main" colorManagement:"Nuke"
+version 10.0 v5
+define_window_layout_xml {<?xml version="1.0" encoding="UTF-8"?>
+<layout version="1.0">
+    <window x="1920" y="76" w="1920" h="1062" screen="1">
+        <splitter orientation="1">
+            <split size="40"/>
+            <dock id="" hideTitles="1" activePageId="Toolbar.1">
+                <page id="Toolbar.1"/>
+            </dock>
+            <split size="1256" stretch="1"/>
+            <splitter orientation="2">
+                <split size="587"/>
+                <dock id="" activePageId="Viewer.1">
+                    <page id="Viewer.1"/>
+                </dock>
+                <split size="412"/>
+                <dock id="" activePageId="DAG.1">
+                    <page id="DAG.1"/>
+                    <page id="Curve Editor.1"/>
+                    <page id="DopeSheet.1"/>
+                </dock>
+            </splitter>
+            <split size="616"/>
+            <dock id="" activePageId="Properties.1">
+                <page id="Properties.1"/>
+            </dock>
+        </splitter>
+    </window>
+</layout>
+}
+Root {
+ inputs 0
+ name /users/guest/h/htinney/VFX/MetalGrinder.nk
+ frame 0
+ last_frame 97
+ lock_range true
+ format "2048 1556 0 0 2048 1556 1 2K_Super_35(full-ap)"
+ proxy_type scale
+ proxy_format "1024 778 0 0 1024 778 1 1K_Super_35(full-ap)"
+ colorManagement Nuke
+ workingSpaceLUT linear
+ monitorLut sRGB
+ int8Lut sRGB
+ int16Lut sRGB
+ logLut Cineon
+ floatLut linear
+}
+Read {
+ inputs 0
+ file /users/guest/h/htinney/VFX/render/MetalGrinder2.Layer2.mantra1.####.exr
+ format "1280 720 0 0 1280 720 1 HD_720"
+ first 2
+ last 97
+ origfirst 2
+ origlast 97
+ origset true
+ name Read3
+ xpos 180
+ ypos -321
+}
+Read {
+ inputs 0
+ file /users/guest/h/htinney/VFX/render/MetalGrinder2.mantra1.####.exr
+ format "1280 720 0 0 1280 720 1 HD_720"
+ first 2
+ last 97
+ origfirst 2
+ origlast 97
+ origset true
+ name Read2
+ xpos 83
+ ypos -331
+}
+Glow2 {
+ tint_panelDropped true
+ brightness 4.02
+ size 1.2
+ name Glow1
+ xpos 83
+ ypos -247
+}
+Glow2 {
+ tint {1.38889 1.107224 0.371651 1}
+ tint_panelDropped true
+ brightness 2.88
+ size 9.8
+ name Glow2
+ xpos 83
+ ypos -221
+}
+Read {
+ inputs 0
+ file /users/guest/h/htinney/VFX/render/MetalGrinder2.Layer0.Still.mantra1.0001.exr
+ format "1280 720 0 0 1280 720 1 HD_720"
+ origset true
+ name Read1
+ xpos -150
+ ypos -218
+}
+Merge2 {
+ inputs 2
+ name Merge1
+ xpos 83
+ ypos -172
+}
+Merge2 {
+ inputs 2
+ name Merge2
+ xpos 180
+ ypos -172
+}
+Write {
+ file /users/guest/h/htinney/VFX/render/MetalGrinderExport.mov
+ file_type mov
+ mov64_codec ap4h
+ mov64_bitrate 20000
+ mov64_bitrate_tolerance 40000000
+ mov64_quality_min 2
+ mov64_quality_max 31
+ mov64_gop_size 12
+ mov64_b_frames 0
+ checkHashOnRead false
+ version 2
+ name Write1
+ selected true
+ xpos 180
+ ypos -146
+}
+Viewer {
+ frame_range 1-8
+ name Viewer1
+ xpos 152
+ ypos -48
+}
